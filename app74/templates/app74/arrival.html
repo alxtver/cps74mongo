@@ -1,0 +1,48 @@
+{% extends 'department74/base.html' %}
+
+{% block content %}
+    <div><br></div>
+    <div>
+        <table class="table table-bordered table-striped table-hover table-sm" id="myTable">
+            <thead class="thead-dark">
+            <tr>
+                <th>Тип</th>
+                <th>Наименование</th>
+                <th>Серийный номер</th>
+                <th>Партия</th>
+                <th>Страна произвоздства</th>
+            </tr>
+            </thead>
+            <tr id="row1">
+                <td contenteditable="true"></td>
+                <td contenteditable="true"></td>
+                <td contenteditable="true"></td>
+                <td contenteditable="true"></td>
+                <td contenteditable="true"></td>
+            </tr>
+
+        </table>
+    </div>
+
+    <button onclick="addRow('myTable');return false;" type="button" class="btn btn-dark">Добавить строку</button>
+
+    <script type="text/javascript">
+        function addRow(id){
+            var tbody = document.getElementById(id).getElementsByTagName("TBODY")[0];
+            var row = document.createElement("TR");
+            var td1 = document.createElement("TD").contentEditable = true;
+            var td2 = document.createElement("TD");
+            var td3 = document.createElement("TD");
+            var td4 = document.createElement("TD");
+            var td5 = document.createElement("TD");
+
+            {#td2.appendChild (document.createTextNode("column 2"))#}
+            row.appendChild(td1);
+            row.appendChild(td2);
+            row.appendChild(td3);
+            row.appendChild(td4);
+            row.appendChild(td5);
+            tbody.appendChild(row);
+        }
+    </script>
+{% endblock %}

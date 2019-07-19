@@ -1,0 +1,95 @@
+{% extends 'app74/base.html' %}
+{% block content %}
+
+<div>
+    <h3 class="display-4">Комплектующие</h3>
+</div>
+
+
+{% if errors %}
+
+    {% for error in errors %}
+       <p type="text" class="text-danger"> {{ error }} </p>
+    {% endfor %}
+
+{% endif %}
+
+<div class="form-group my-3">
+
+<form action="" method="GET">
+
+    <div class="input-group col-md-6">
+        <input type="text" class="form-control my-3" placeholder="Поиск" value="{{ query }}" name="q">
+        <div class="input-group-btn">
+            <button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></button>
+        </div>
+    </div>
+
+</form>
+</div>
+
+    <div class="form-group my-3">
+        <button onclick="location.href = '/components/new/'" class="btn btn-dark">Новый</button>
+    </div>
+
+<div id="tableContent my-3">
+{% if matches %}
+    <p class="table_font_text">Найдено {{ matches|length }}.</p>
+        <table class="table table-bordered table-striped table-hover table-sm">
+            <thead class="thead-dark">
+                <tr>
+                    <th>Тип</th>
+                    <th>Наименование</th>
+                    <th>Серийный номер</th>
+                    <th>Партия</th>
+                    <th>Номер машины</th>
+                    <th>Страна производства</th>
+                    <th>Дата</th>
+                </tr>
+            </thead>
+        {% for i in matches %}
+          <tr>
+            <td>{{ i.name_type }}</td>
+	        <td>{{ i.name }}</td>
+	        <td>{{ i.serial_number }}</td>
+	        <td>{{ i.part_name }}</td>
+            <td>{{ i.computer}}</td>
+            <td>{{ i.country }}</td>
+            <td>{{ i.date_of_arrival }}</td>
+          </tr>
+        {% endfor %}
+        </table>
+
+{% elif not matches %}
+    <table class="table table-bordered table-striped table-hover table-sm">
+    <thead class="thead-dark">
+    <tr>
+        <th>Тип</th>
+        <th>Наименование</th>
+        <th>Серийный номер</th>
+        <th>Партия</th>
+        <th>Номер машины</th>
+        <th>Страна производства</th>
+        <th>Дата</th>
+    </tr>
+    </thead>
+    {% for p in pki %}
+        <tr>
+            <td>{{ p.name_type }}</td>
+            <td>{{ p.name }}</td>
+            <td>{{ p.serial_number }}</td>
+            <td>{{ p.part_name }}</td>
+            <td>{{ p.computer }}</td>
+            <td>{{ p.country }}</td>
+            <td>{{ p.date_of_arrival }}</td>
+        </tr>
+    {% endfor %}
+</table>
+    {% else %}
+        <p>{{ notfound }}</p>
+
+{% endif %}
+</div>
+
+
+{% endblock %}

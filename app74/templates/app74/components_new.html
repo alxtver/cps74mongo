@@ -1,0 +1,27 @@
+{% extends 'app74/base.html' %}
+{% load staticfiles %}
+{% block content %}
+
+<div class="wrapper fadeInDown">
+    <div id="formContent">
+    <h1>Новый компонент</h1>
+        <form method="POST" class="component-form">
+            {% csrf_token %}
+            {{ form }}
+            <div id="formFooter">
+                <button onclick="return addSession();" type="submit"  class="save btn btn-dark">Сохранить</button>
+                <button onclick="location.href = '/components/'" class="btn btn-dark">Назад</button>
+            </div>
+
+        </form>
+
+    </div>
+</div>
+
+<script type="text/javascript" src="{% static 'js/session.js' %}"></script>
+<script type="text/javascript">
+  $(document).ready(function() {
+    loadSession()
+  });
+</script>
+{% endblock %}

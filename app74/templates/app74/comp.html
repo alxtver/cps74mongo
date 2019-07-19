@@ -1,0 +1,55 @@
+{% extends 'app74/base.html' %}
+{% block content %}
+
+<div>
+    <h3 class="display-4">Машины</h3>
+</div>
+
+<div id="tableContent">
+    <form method="POST" class="part-form" >
+        <div class="form-group my-3">
+            {% csrf_token %}
+            {{ form.as_table }}
+        </div>
+    </form>
+</div>
+
+ <div id="tableContent">
+    <table class="table table-bordered table-striped table-hover table-sm">
+        {% for j in comps %}
+
+          <thead class="thead-dark">
+	        <th>{{ j.part }}</th>
+            <th>{{ j.serial_number }}</th>
+            <th></th>
+          </thead>
+            <thead>
+	        <th>Тип</th>
+            <th>Наименование</th>
+            <th>Серийный номер</th>
+          </thead>
+            {% for i in items %}
+                {% if j == i.comp %}
+                    {% with ''|center:i.quantity as range %}
+                    {% for _ in range %}
+                        <tr>
+                            <td>{{ i.items }}</td>
+                            <td></td>
+                            <td contenteditable='true'></td>
+                        </tr>
+                    {% endfor %}
+                    {% endwith %}
+                {% endif %}
+            {% endfor %}
+        {% endfor %}
+    </table>
+    </div>
+
+
+
+<script type="text/javascript">
+    const arr = $('select[name=select] option');
+    $('#id_select').prepend('<option selected value="0">Выберите серию</option>');
+</script>
+
+{% endblock %}

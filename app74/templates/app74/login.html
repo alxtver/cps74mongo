@@ -1,0 +1,15 @@
+{% extends 'app74/base.html' %}
+
+{% block title %}Вход{% endblock %}
+
+{% block content %}
+    <div class="wrapper fadeInDown">
+      <div id="formContent">
+          <form method="POST">
+                {% csrf_token %}
+                {{ form }}
+                <input type="submit" class="fadeIn fourth" value="Вход">
+          </form>
+      </div>
+    </div>
+{% endblock %}
